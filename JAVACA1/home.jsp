@@ -14,38 +14,54 @@
             background-color: #f7f8fa;
         }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        .navbar {
+            background-color: #9C89B8;
+            overflow: hidden;
+            padding: 10px;
         }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-
-        nav a {
+        .navbar a {
             color: white;
             padding: 14px 20px;
             text-decoration: none;
-            text-align: center;
+            float: left;
         }
-
-        nav a:hover {
-            background-color: #575757;
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
         }
-
+        
         .hero-section {
-            background-image: url('images/cleaning-hero.jpg'); /* Replace with a relevant image path */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
+    background-image: url('images/home.jpeg'); /* Replace with your image path */
+    background-size: cover; /* Makes the image fill the screen */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; /* Makes the section take the full height of the viewport */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+    z-index: 1;
+}
+		.hero-section h1, .hero-section p, .hero-section button {
+    		position: relative;
+    		z-index: 2; /* Ensure the text is above the overlay */
+		}		
+		
+        
 
         .hero-section h1 {
             font-size: 50px;
@@ -134,15 +150,13 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Cleaning Services</h1>
-    </header>
-    <nav>
-        <a href="home.jsp">Home</a>
+    <div class="navbar">
+        <a href="index.jsp">Home</a>
         <a href="services.jsp">Services</a>
         <a href="register.jsp">Register</a>
-        <a href="login.jsp">Login</a>
-    </nav>
+        <a href="admin/login.jsp">Admin Login</a>
+        <a href="contact.jsp">Contact Us</a>
+    </div>
     <div class="hero-section">
         <h1>Professional Cleaning Services</h1>
         <p>We make your space sparkling clean and comfortable.</p>
