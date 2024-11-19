@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Main Container */
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Left Section */
+.profile-left {
+    flex: 1;
+    background-color: #f0f4f7;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-left h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.profile-left p {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Right Section */
+.profile-right {
+    flex: 2;
+    padding: 30px 50px;
+}
+
+.profile-right h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1 1 100%; /* Full-width by default */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: #bbb;
+}
+
+/* Side-by-Side Inputs */
+.form-group input[type="text"]:nth-child(2) {
+    margin-left: 10px;
+}
+
+/* Save Button */
+.save-btn {
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.save-btn:hover {
+    background-color: #574dc8;
+}

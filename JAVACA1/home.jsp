@@ -14,21 +14,6 @@
             background-color: #f7f8fa;
         }
 
-        .navbar {
-            background-color: #9C89B8;
-            overflow: hidden;
-            padding: 10px;
-        }
-        .navbar a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            float: left;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
         
         .hero-section {
     background-image: url('images/home.jpeg'); /* Replace with your image path */
@@ -150,13 +135,7 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="index.jsp">Home</a>
-        <a href="services.jsp">Services</a>
-        <a href="register.jsp">Register</a>
-        <a href="admin/login.jsp">Admin Login</a>
-        <a href="contact.jsp">Contact Us</a>
-    </div>
+    <%@ include file="navbar.jsp" %>
     <div class="hero-section">
         <h1>Professional Cleaning Services</h1>
         <p>We make your space sparkling clean and comfortable.</p>
