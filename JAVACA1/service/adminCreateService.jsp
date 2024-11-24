@@ -146,7 +146,7 @@
 <div class="container">
     <h1>Create a New Service</h1>
     <div class="button-container">
-        <button onclick="window.location.href='adminViewUpdateDeleteCategory.jsp';">View All Categories</button>
+        <button onclick="window.location.href='adminViewUpdateDeleteService.jsp';">View All Services</button>
     </div>
     <form action="${pageContext.request.contextPath}/service" method="post" id="createServiceForm">
         <input type="hidden" name="action" value="create">

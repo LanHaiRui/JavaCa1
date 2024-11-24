@@ -136,19 +136,19 @@
         <%
         } else if (navbaruserRole != null && navbaruserRole.equals("member")) { // Check if userRole equals "member"
         %>
-            <a href="${pageContext.request.contextPath}/JAVACA1/home.jsp">Home</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/home.jsp">Home</a>
             <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/service/generalViewService.jsp">Services</a>
             <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/category/generalViewCategory.jsp">Categories</a>
-            <a href="${pageContext.request.contextPath}/JAVACA1/register.jsp">Register</a>
-            <a href="${pageContext.request.contextPath}/JAVACA1/booking.jsp">Booking</a>
-            <a href="${pageContext.request.contextPath}/getCart">Cart</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/register.jsp">Register</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/booking.jsp">Booking</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/getCart">Cart</a>
         <%
         } else { // Default for users with no role
         %>
-            <a href="${pageContext.request.contextPath}/JAVACA1/home.jsp">Home</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/home.jsp">Home</a>
             <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/service/generalViewService.jsp">Services</a>
             <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/category/generalViewCategory.jsp">Categories</a>
-            <a href="${pageContext.request.contextPath}/JAVACA1/register.jsp">Register</a>
+            <a href="${pageContext.request.contextPath}/JavaCA1/JAVACA1/register.jsp">Register</a>
         <%
         }
         %>
