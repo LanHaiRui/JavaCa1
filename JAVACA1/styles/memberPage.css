@@ -86,11 +86,6 @@ form {
     color: #bbb;
 }
 
-/* Side-by-Side Inputs */
-.form-group input[type="text"]:nth-child(2) {
-    margin-left: 10px;
-}
-
 /* Save Button */
 .save-btn {
     background-color: #6c63ff;

@@ -32,45 +32,19 @@
             <form action="saveProfileServlet" method="POST">
                 <div class="form-group">
                     <label for="firstName">Name</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="First Name">
-                    <input type="text" id="surname" name="surname" placeholder="Surname">
+                    <input type="text" id="Name" name="Name" placeholder="Name">
                 </div>
                 <div class="form-group">
                     <label for="mobileNumber">Mobile Number</label>
                     <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter phone number">
                 </div>
                 <div class="form-group">
-                    <label for="address1">Address Line 1</label>
-                    <input type="text" id="address1" name="address1" placeholder="Enter address line 1">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter address">
                 </div>
-                <div class="form-group">
-                    <label for="address2">Address Line 2</label>
-                    <input type="text" id="address2" name="address2" placeholder="Enter address line 2">
-                </div>
-                <div class="form-group">
-                    <label for="postcode">Postcode</label>
-                    <input type="text" id="postcode" name="postcode" placeholder="Enter postcode">
-                </div>
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state" placeholder="Enter state">
-                </div>
-                <div class="form-group">
-                    <label for="area">Area</label>
-                    <input type="text" id="area" name="area" placeholder="Enter area">
-                </div>
-                <div class="form-group">
+      			<div class="form-group">
                     <label for="email">Email ID</label>
                     <input type="email" id="email" name="email" placeholder="Enter email ID">
-                </div>
-                <div class="form-group">
-                    <label for="education">Education</label>
-                    <input type="text" id="education" name="education" placeholder="Education">
-                </div>
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" id="country" name="country" placeholder="Country">
-                    <input type="text" id="stateRegion" name="stateRegion" placeholder="State/Region">
                 </div>
                 <button type="submit" class="save-btn">Save Profile</button>
             </form>

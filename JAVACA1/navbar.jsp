@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,10 +30,11 @@
 <body>
 	<div class="navbar">
 		<div>
-			<a href="index.jsp">Home</a>
-        	<a href="services.jsp">Services</a>
-        	<a href="register.jsp">Register</a>
-        	<a href="contact.jsp">Contact Us</a>
+			<a href="${pageContext.request.contextPath}/JAVACA1/home.jsp">Home</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/services.jsp">Services</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/register.jsp">Register</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/booking.jsp">Booking</a>
+        	<a href="${pageContext.request.contextPath}/getCart">cart</a>
 		</div>
 		<a href="memberPage.jsp">Profile</a>
     </div>

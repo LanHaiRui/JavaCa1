@@ -45,7 +45,7 @@ public class VerifyMembers extends HttpServlet {
             conn = DriverManager.getConnection(DB_URL);
 
             // SQL query to verify member credentials
-            String sql = "SELECT name, userRole FROM members WHERE email = ? AND password = ?";
+            String sql = "SELECT name, userRole, user_id FROM users WHERE email = ? AND password = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
             pstmt.setString(2, password);
@@ -57,9 +57,12 @@ public class VerifyMembers extends HttpServlet {
                 // If user is found, retrieve details
                 String name = rs.getString("name");
                 String userRole = rs.getString("userRole");
+                String userId = rs.getString("user_id");
+
 
                 // Start session and set attributes
                 HttpSession session = request.getSession();
+                session.setAttribute("sessId", userId);
                 session.setAttribute("sessEmail", email);
                 session.setAttribute("sessName", name);
                 session.setAttribute("sessUserRole", userRole);
