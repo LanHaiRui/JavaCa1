@@ -4,29 +4,97 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>View, Update, Delete Service</title>
+    <title>Service Management</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            overflow-x: auto;
+            margin-bottom: 20px;
         }
-        table, th, td {
-            border: 1px solid black;
-        }
+
         th, td {
-            padding: 8px;
+            padding: 10px;
             text-align: left;
+            border: 1px solid #ddd;
         }
-        tbody {
-            display: block;
-            overflow-y: scroll;
-            height: 300px;
+
+        th {
+            background-color: #f4f4f4;
         }
-        thead, tbody tr {
-            display: table;
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        input[type="text"], textarea, select {
             width: 100%;
-            table-layout: fixed;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        p.error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
     <script>
@@ -57,7 +125,7 @@
             const currentDescription = row.querySelector('.description').value.trim();
             const currentCategory = row.querySelector('.categoryDropdown').value;
 
-            updateButton.disabled = 
+            updateButton.disabled =
                 originalName === currentName &&
                 originalLink === currentLink &&
                 originalDescription === currentDescription &&
@@ -66,15 +134,10 @@
 
         function populateHiddenFields(form) {
             const row = form.closest('tr');
-            const serviceNameField = row.querySelector('.serviceName');
-            const imageLinkField = row.querySelector('.imageLink');
-            const descriptionField = row.querySelector('.description');
-            const categoryDropdown = row.querySelector('.categoryDropdown');
-
-            form.querySelector('.newServiceName').value = serviceNameField.value.trim() || serviceNameField.getAttribute('data-original');
-            form.querySelector('.newImageLink').value = imageLinkField.value.trim() || imageLinkField.getAttribute('data-original');
-            form.querySelector('.newDescription').value = descriptionField.value.trim() || descriptionField.getAttribute('data-original');
-            form.querySelector('.newCategoryId').value = categoryDropdown.value || categoryDropdown.getAttribute('data-original');
+            form.querySelector('.newServiceName').value = row.querySelector('.serviceName').value.trim();
+            form.querySelector('.newImageLink').value = row.querySelector('.imageLink').value.trim();
+            form.querySelector('.newDescription').value = row.querySelector('.description').value.trim();
+            form.querySelector('.newCategoryId').value = row.querySelector('.categoryDropdown').value;
         }
 
         function confirmDelete() {
@@ -83,91 +146,98 @@
     </script>
 </head>
 <body>
-<%
-    String errCode = request.getParameter("errCode");
-    String message = null;
-    if ("serviceNotFound".equals(errCode)) {
-        message = "The specified service could not be found!";
-    } else if ("updateFailed".equals(errCode)) {
-        message = "Failed to update the service. Please try again.";
-    } else if ("deleteFailed".equals(errCode)) {
-        message = "Failed to delete the service. Please try again.";
-    } else if ("serviceAlreadyExists".equals(errCode)) {
-        message = "The service already exists!";
-    } else if ("imageLinkAlreadyExists".equals(errCode)) {
-        message = "The image link already exists! Please use a unique link.";
-    } else if ("serverError".equals(errCode)) {
-        message = "A server error has occurred. Please try again later.";
-    }
-
-    if (message != null) {
-%>
-    <script>
-        alert("<%= message %>");
-    </script>
-<%
-    }
-%>
-
-<h1>Service Management</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image Link</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+<%@ include file="../navbar.jsp" %>
+<div class="container">
+    <h1>Service Management</h1>
+    <button onclick="window.location.href='adminCreateService.jsp'">Create Service</button>
+    <%
+        String errCode = request.getParameter("errCode");
+        if (errCode != null) {
+            String message = null;
+            switch (errCode) {
+                case "serviceNotFound":
+                    message = "The specified service could not be found!";
+                    break;
+                case "updateFailed":
+                    message = "Failed to update the service. Please try again.";
+                    break;
+                case "deleteFailed":
+                    message = "Failed to delete the service. Please try again.";
+                    break;
+                case "serviceAlreadyExists":
+                    message = "The service already exists!";
+                    break;
+                case "imageLinkAlreadyExists":
+                    message = "The image link already exists! Please use a unique link.";
+                    break;
+                case "serverError":
+                    message = "A server error has occurred. Please try again later.";
+                    break;
+            }
+            if (message != null) {
+    %>
+    <p class="error-message"><%= message %></p>
+    <%
+            }
+        }
+    %>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image Link</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
         <%
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 String connURL = "jdbc:mysql://localhost/javaca1?user=root&password=passwordLHRH3nry570&serverTimezone=UTC";
                 try (Connection conn = DriverManager.getConnection(connURL);
                      Statement stmt = conn.createStatement();
-                     ResultSet serviceRs = stmt.executeQuery("SELECT s.id, s.name, s.image_link, s.description, s.category_id, c.name AS category_name FROM service s JOIN category c ON s.category_id = c.id")) {
-                    while (serviceRs.next()) {
-                        int id = serviceRs.getInt("id");
-                        String name = serviceRs.getString("name");
-                        String imageLink = serviceRs.getString("image_link");
-                        String description = serviceRs.getString("description");
-                        int categoryId = serviceRs.getInt("category_id");
+                     ResultSet rs = stmt.executeQuery("SELECT s.id, s.name, s.image_link, s.description, s.category_id, c.name AS category_name FROM service s JOIN category c ON s.category_id = c.id")) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String name = rs.getString("name");
+                        String imageLink = rs.getString("image_link");
+                        String description = rs.getString("description");
+                        int categoryId = rs.getInt("category_id");
         %>
         <tr>
             <td><%= id %></td>
             <td>
-                <input type="text" value="<%= name %>" class="serviceName" data-original="<%= name %>" oninput="enableUpdateButton(this.closest('tr'))">
+                <input type="text" class="serviceName" value="<%= name %>" data-original="<%= name %>" oninput="enableUpdateButton(this.closest('tr'))">
             </td>
             <td>
-                <input type="text" value="<%= imageLink %>" class="imageLink" data-original="<%= imageLink %>" oninput="enableUpdateButton(this.closest('tr'))">
+                <input type="text" class="imageLink" value="<%= imageLink %>" data-original="<%= imageLink %>" oninput="enableUpdateButton(this.closest('tr'))">
             </td>
             <td>
-                <textarea rows="2" cols="30" class="description" data-original="<%= description %>" oninput="enableUpdateButton(this.closest('tr'))"><%= description %></textarea>
+                <textarea class="description" rows="2" data-original="<%= description %>" oninput="enableUpdateButton(this.closest('tr'))"><%= description %></textarea>
             </td>
             <td>
                 <select class="categoryDropdown" data-original="<%= categoryId %>" onchange="enableUpdateButton(this.closest('tr'))">
                     <%
-                        try (Statement categoryStmt = conn.createStatement();
-                             ResultSet categoryRs = categoryStmt.executeQuery("SELECT id, name FROM category")) {
-                            while (categoryRs.next()) {
-                                int catId = categoryRs.getInt("id");
-                                String catName = categoryRs.getString("name");
-                                boolean isSelected = catId == categoryId;
+                        try (Statement stmtCat = conn.createStatement();
+                             ResultSet rsCat = stmtCat.executeQuery("SELECT id, name FROM category")) {
+                            while (rsCat.next()) {
+                                int catId = rsCat.getInt("id");
+                                String catName = rsCat.getString("name");
+                                boolean selected = catId == categoryId;
                     %>
-                    <option value="<%= catId %>" <%= isSelected ? "selected" : "" %>><%= catName %></option>
+                    <option value="<%= catId %>" <%= selected ? "selected" : "" %>><%= catName %></option>
                     <%
                             }
                         }
                     %>
                 </select>
             </td>
-            <td>
+            <td class="action-buttons">
                 <form action="${pageContext.request.contextPath}/service" method="post" style="display:inline;" onsubmit="populateHiddenFields(this)">
                     <input type="hidden" name="serviceId" value="<%= id %>">
-                    <input type="hidden" name="action" value="update">
                     <input type="hidden" class="newServiceName" name="serviceName">
                     <input type="hidden" class="newImageLink" name="image_link">
                     <input type="hidden" class="newDescription" name="description">
@@ -176,7 +246,6 @@
                 </form>
                 <form action="${pageContext.request.contextPath}/service" method="post" style="display:inline;">
                     <input type="hidden" name="serviceId" value="<%= id %>">
-                    <input type="hidden" name="action" value="delete">
                     <button type="submit" onclick="return confirmDelete()">Delete</button>
                 </form>
             </td>
@@ -185,10 +254,11 @@
                     }
                 }
             } catch (Exception e) {
-                out.println("<p style='color:red;'>Error loading services.</p>");
+                out.println("<p class='error-message'>Error loading services. Please try again later.</p>");
             }
         %>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
