@@ -67,10 +67,10 @@ public class VerifyMembers extends HttpServlet {
                 session.setAttribute("sessName", name);
                 session.setAttribute("sessUserRole", userRole);
 
-                response.sendRedirect("JAVACA1/memberPage.jsp");
+                response.sendRedirect("getMember?loginSuccess=true");
             } else {
                 // If user is not found, redirect back to login with an error message
-                response.sendRedirect("login.jsp?errCode=invalidLogin");
+                response.sendRedirect("JAVACA1/login.jsp?errCode=invalidLogin");
             }
         } catch (Exception e) {
             // Log the exception (replace with proper logging in production)

@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="styles/login.css"> <!-- Link to the CSS file -->
 </head>
 <body>
+	<% 
+        String logoutMessage = request.getParameter("logout");
+        if ("true".equals(logoutMessage)) { 
+    %>
+        <div class="popup">
+            <div class="popup-content">
+                <p>You have successfully logged out.</p>
+                <a href="login.jsp" class="close-btn">OK</a>
+            </div>
+        </div>
+    <% 
+        } 
+    %>
+    <% 
+        String registerMessage = request.getParameter("registerSuccess");
+        if ("true".equals(registerMessage)) { 
+    %>
+        <div class="popup">
+            <div class="popup-content">
+                <p>You have successfully registered! Please sign in.</p>
+                <a href="login.jsp" class="close-btn">OK</a>
+            </div>
+        </div>
+    <% 
+        } 
+    %>
 	<%@ include file="navbar.jsp" %>
 	<div class="main-container">
     <div class="container">

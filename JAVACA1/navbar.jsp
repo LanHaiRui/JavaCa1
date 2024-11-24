@@ -105,6 +105,15 @@
 </style>
 </head>
 <body>
+	<div class="navbar">
+		<div>
+			<a href="${pageContext.request.contextPath}/JAVACA1/home.jsp">Home</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/services.jsp">Services</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/register.jsp">Register</a>
+        	<a href="${pageContext.request.contextPath}/JAVACA1/booking.jsp">Booking</a>
+        	<a href="${pageContext.request.contextPath}/getCart">cart</a>
+		</div>
+		<a href="${pageContext.request.contextPath}/getMember">Profile</a>
     <div class="navbar">
         <div>
         <%
@@ -153,7 +162,7 @@
         }
         %>
         </div>
-        <a href="memberPage.jsp">Profile</a>
+        <a href="${pageContext.request.contextPath}/memberPage.jsp">Profile</a>
     </div>
 </body>
 </html>
