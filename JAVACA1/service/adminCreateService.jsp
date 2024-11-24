@@ -29,7 +29,6 @@
 <%
     }
 
-
     boolean allowSubmit = false;
     Connection conn = null;
     ResultSet rs = null;
@@ -47,7 +46,7 @@
             allowSubmit = true;
         }
 %>
-    <form action="${pageContext.request.contextPath}/service" method="post">
+    <form action="${pageContext.request.contextPath}/service" method="post" id="createServiceForm">
         <input type="hidden" name="action" value="create">
         <label for="serviceName">New Service Name:</label>
         <input type="text" id="serviceName" name="serviceName" required><br><br>
@@ -68,8 +67,11 @@
             }
 %>
         </select><br><br>
-        
-        <input type="submit" value="Create" <%= allowSubmit ? "" : "disabled" %>>
+    
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+    
+        <input type="submit" id="submitButton" value="Create" disabled>
         <input type="reset" value="Reset">
     </form>
 <%
@@ -85,5 +87,25 @@
         out.print("<p><a href='../category/adminCreateCategory.jsp' style='color:blue; text-decoration:underline;'>Click here to add categories</a></p>");
     }
 %>
+
+<script>
+    const form = document.getElementById('createServiceForm');
+    const submitButton = document.getElementById('submitButton');
+
+    // Function to check if all fields are filled
+    function validateForm() {
+        const serviceName = document.getElementById('serviceName').value.trim();
+        const imageLink = document.getElementById('image_link').value.trim();
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value.trim();
+
+        // Enable the submit button only if all fields are filled
+        submitButton.disabled = !(serviceName && imageLink && category && description);
+    }
+
+    // Attach event listeners to form fields
+    form.addEventListener('input', validateForm);
+    form.addEventListener('change', validateForm);
+</script>
 </body>
 </html>
