@@ -78,6 +78,33 @@
     </script>
 </head>
 <body>
+<%
+    // Error handling logic
+    String errCode = request.getParameter("errCode");
+    String message = null;
+    if ("serviceNotFound".equals(errCode)) {
+        message = "The specified service could not be found!";
+    } else if ("updateFailed".equals(errCode)) {
+        message = "Failed to update the service. Please try again.";
+    } else if ("deleteFailed".equals(errCode)) {
+        message = "Failed to delete the service. Please try again.";
+    } else if ("serviceAlreadyExists".equals(errCode)) {
+        message = "The service already exists!";
+    } else if ("imageLinkAlreadyExists".equals(errCode)) {
+        message = "The image link already exists! Please use a unique link.";
+    } else if ("serverError".equals(errCode)) {
+        message = "A server error has occurred. Please try again later.";
+    }
+
+    if (message != null) {
+%>
+    <script>
+        alert("<%= message %>");
+    </script>
+<%
+    }
+%>
+
     <h1>Service Management</h1>
     <table>
         <thead>

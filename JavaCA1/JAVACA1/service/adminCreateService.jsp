@@ -8,16 +8,28 @@
 </head>
 <body>
 <%
+    // Error handling logic
     String errCode = request.getParameter("errCode");
+    String message = null;
     if ("serviceAlreadyExists".equals(errCode)) {
-        out.println("<p style='color:red;'>This service already exists!</p>");
+        message = "This service already exists!";
+    } else if ("imageLinkAlreadyExists".equals(errCode)) {
+        message = "The image link already exists! Please use a unique link.";
+    } else if ("invalidService".equals(errCode)) {
+        message = "This service is invalid!";
+    } else if ("serverError".equals(errCode)) {
+        message = "A server error has occurred!";
     }
-    if ("invalidService".equals(errCode)) {
-        out.println("<p style='color:red;'>This service is invalid!</p>");
+
+    if (message != null) {
+%>
+    <script>
+        alert("<%= message %>");
+    </script>
+<%
     }
-    if ("serverError".equals(errCode)) {
-        out.println("<p style='color:red;'>A server error has occurred!</p>");
-    }
+
+
     boolean allowSubmit = false;
     Connection conn = null;
     ResultSet rs = null;
@@ -70,7 +82,7 @@
 
     if (!allowSubmit) {
         out.println("<p style='color:red;'>No categories available. Please add categories first.</p>");
-        out.print("<p><a href='../category/createCategory.jsp' style='color:blue; text-decoration:underline;'>Click here to add categories</a></p>");
+        out.print("<p><a href='../category/adminCreateCategory.jsp' style='color:blue; text-decoration:underline;'>Click here to add categories</a></p>");
     }
 %>
 </body>
