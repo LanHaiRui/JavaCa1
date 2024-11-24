@@ -100,63 +100,6 @@ body {
     margin-bottom: 20px;
 }
 
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.social-btn {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    color: #fff;
-}
-
-.fb {
-    background: #3b5998;
-}
-
-.google {
-    background: #db4437;
-}
-
-.linkedin {
-    background: #0077b5;
-}
-
-.or-divider {
-    margin: 20px 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.or-divider span {
-    background: #fff;
-    padding: 0 10px;
-    font-size: 12px;
-    color: #666;
-    position: relative;
-}
-
-.or-divider:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: #ddd;
-}
 
 form {
     width: 100%;
@@ -179,19 +122,6 @@ form input:focus {
     outline: none;
 }
 
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.password-wrapper .show-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #aaa;
-}
 
 .btn {
     padding: 10px 20px;

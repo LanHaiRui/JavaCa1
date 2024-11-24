@@ -36,7 +36,7 @@
         	<a href="${pageContext.request.contextPath}/JAVACA1/booking.jsp">Booking</a>
         	<a href="${pageContext.request.contextPath}/getCart">cart</a>
 		</div>
-		<a href="memberPage.jsp">Profile</a>
+		<a href="${pageContext.request.contextPath}/getMember">Profile</a>
     </div>
 </body>
 </html>
